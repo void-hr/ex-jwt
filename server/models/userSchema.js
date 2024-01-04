@@ -5,12 +5,20 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
-    
-      isGoodBoy: {
-        type: Boolean,
-        required: false,
-        default: true,
+      username: {
+        type: String,
+        required: true,
+        unique: true,
       },
+      email: {
+        type: String,
+        required: true,
+        unique: true,
+      },
+      password: {
+        type: String,
+        required: true,
+      }
 })
 
 const User  = mongoose.model("User", userSchema);

@@ -1,12 +1,14 @@
 const express = require('express');
 const app = express();
 const routes = require('./routes/routes')
+var cors = require('cors')
 // to use .env
 const dotenv = require('dotenv');
 dotenv.config({ path: './.env' }); 
 // import db config
 const db = require('./config/mongodb');
 
+app.use(cors());
 app.use(express.json());
 app.use('/', routes);
 

@@ -18,6 +18,7 @@ const createUser = async (req,res) => {
 }
 
 const fetchUser = async (req,res) => {
+        console.log(res)
     try {
         const allUsers = await User.find({});
         res.json(allUsers) 
@@ -31,14 +32,13 @@ const userLogin = async (req,res) => {
 
     try {
         const existingUser = await User.findOne({'email': email});
-        console.log(existingUser)
-        if(existingUser.password === pass){
-            res.json({"message" : "login successfully"})
+        if(existingUser?.password === pass){
+            res.status(200).json({"message" : "login successfully"})
         }else{
-            res.send("wrong credentials")
+            res.status(401).send({"error":"wrong credentials"})
         }
     } catch (error) {
-        console.log(error)
+        console.log("this error is arising because :"+error)
     }
 
 }
